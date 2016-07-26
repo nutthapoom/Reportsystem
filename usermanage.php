@@ -1,5 +1,5 @@
 <?php
-  include_once('lib/connect.php');
+  include_once('libs/connect.php');
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
