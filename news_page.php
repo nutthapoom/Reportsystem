@@ -17,8 +17,8 @@
      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
+    <div class="navbar navbar-inverse">
+      <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                 <span class="icon-bar"></span>
@@ -59,74 +59,56 @@
                     </li>
                 </ul>
                 <div class="navbar-right">
-                  <button type="submit" class="btn btn-danger">Log In</button>
+                  <a href="login.php" class="btn btn-danger" role="button">Log In</a>
                 </div>
             </div>
         </center>
       </div>
     </div>
-    <div class="container wrapper">
-      <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-          <form action="" method="post">
-            <div class="form-group">
-              <label for="text">Username</label>
-              <input type="text" class="form-control" id="user" />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="pass" />
-            </div>
-          </form>
+    <!-- <?php
+      $query  = "SELECT * FROM tbl_newtype ORDER BY netyp_id asc";
+      $res    = mysqli_query($connection,$query); ?> -->
+    <!-- CONTENT-->
+    <div class="wrappage">
+      <div class="container">
+        <?php while($row=mysqli_fetch_array($res))
+        {
+        ?>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3><?php echo $row["netyp_name"]; ?></h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover">
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+          </div>
         </div>
+        <?php
+        }
+        ?>
       </div>
     </div>
-
-    <div class="container">
-
-        <h2>Horizontal form</h2>
-  <form class="form-horizontal" role="form">
-    <div class="form-group">
-      <label class="control-label col-sm-4" for="email">Email:</label>
-      <div class="col-sm-6">
-        <input type="email" class="form-control" id="email" placeholder="Enter email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-4" for="pwd">Password:</label>
-      <div class="col-sm-6">
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-6">
-        <div class="checkbox">
-          <label><input type="checkbox"> Remember me</label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-4 col-sm-6">
-        <button type="submit" class="btn btn-default">Submit</button>
-      </div>
-    </div>
-  </form>
-</div>
+    <!-- /CONTENT -->
 
 
 
-    <div class="wrapper">
-    <form class="form-signin" action="check_login.php" method="post">
-    <h2 class="form-signin-heading">Please login</h2>
-    <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
-    <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-    <label class="checkbox">
-      <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-    </label>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    </form>
-    </div>
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
     <script src="assets/js/jquery-1.10.2.js"></script>

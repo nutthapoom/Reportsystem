@@ -49,7 +49,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="
                         <a  href="ui.html"><i class="fa fa-desktop fa-3x"></i> ข้อมูลการเข้าใช้งาน</a>
                     </li>
                     <li>
-                        <a  href="tab-panel.html"><i class="fa fa-qrcode fa-3x"></i> Tabs & Panels</a>
+                        <a  href="news_page.php"><i class="fa fa-qrcode fa-3x"></i> เขียนข่าว</a>
                     </li>
 						   <li  >
                         <a  href="chart.html"><i class="fa fa-bar-chart-o fa-3x"></i> Morris Charts</a>
@@ -58,7 +58,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="
                         <a  href="table.html"><i class="fa fa-table fa-3x"></i> สร้างตารางกิจกรรม</a>
                     </li>
                     <li  >
-                        <a  href="form.html"><i class="fa fa-edit fa-3x"></i> Forms </a>
+                        <a  href="form.html"><i class="fa fa-edit fa-3x"></i> ข้อมูลสรุปส่งรายงาน </a>
                     </li>
 					<li  >
                         <a   href="login.html"><i class="fa fa-bolt fa-3x"></i> Login</a>
@@ -74,10 +74,10 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="
                                 <a href="#">แบบสรุปรายงาน</a>
                             </li>
                             <li>
-                                <a href="#">ด้านกิจกรรม</a>
+                                <a href="side_page.php">ด้านกิจกรรม</a>
                             </li>
                             <li>
-                                <a href="#">กิจกรรม<span class="fa arrow"></span></a>
+                                <a class="active-menu" href="activity_page.php">กิจกรรม<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
                                         <a href="#">Third Level Link</a>

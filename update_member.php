@@ -20,9 +20,12 @@
   $mem_pass = md5($_POST['pass']);
   $mtype_id = $_POST['mem_type'];
 
-  //Insert Data
-  $strSQL = "INSERT INTO tbl_member";
-  $strSQL .= "(mem_citize_id, mem_fname, mem_lname, mem_position, mem_code, mem_mobile, mem_user, mem_pass, mtype_id, LoginStatus, LastLogin)";
+  //Update Data
+  $strSQL = "UPDATE tbl_member SET Password = '".trim($_POST['txtPassword'])."'
+	,Name = '".trim($_POST['txtName'])."' WHERE UserID = '".$_SESSION["UserID"]."' ";
+	$objQuery = mysqli_query($objCon,$strSQL);
+  $strSQL = "UPDATE tbl_member";
+  $strSQL .= "(mem_citize_id, mem_fname, mem_lname, mem_position, mem_code, mem_mobile, mem_user, mem_pass, mtype_id, LoginStatus, LastLogin )";
   $strSQL .= "VALUES ";
   $strSQL.= "('$mem_citize_id','$mem_fname','$mem_lname','$mem_position','$mem_code','$mem_mobile','$mem_user','$mem_pass','$mtype_id',0,'0000-00-00 00:00:00')";
 
@@ -31,9 +34,6 @@
   if($objQuery){
     echo "เพิ่มข้อมูลสำเร็จ";
   }else {
-    echo "เกิดข้อผิดพลาด ".mysqli_error($connection);
+    echo "เกิดข้อผิดพลาด ". mysqli_error($connection);
   }
-
-
-  mysqli_close($connection);
 ?>

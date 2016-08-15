@@ -105,62 +105,81 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="login.html" class="
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner">
-                <div class="row">
-                    <div class="col-md-12">
-                     <h2>ข้อมูลบุคลากร</h2>
-                        <?php
-                          $query  = "SELECT tbl_member.mem_id AS memid, tbl_member.mem_citize_id AS citizen, tbl_member.mem_fname AS fname, tbl_member.mem_lname AS lname, tbl_member.mem_position AS position, tbl_member.mem_code AS code, tbl_member.mem_mobile AS mobile, tbl_member.mem_user AS user, tbl_memtype.mtype_name AS tname FROM tbl_member LEFT JOIN tbl_memtype ON tbl_member.mtype_id = tbl_memtype.mtype_id ORDER BY tbl_member.mtype_id asc";
-                          $res    = mysqli_query($connection,$query); ?>
-                            <div class="table-responsive">
-                              <table class="table table-bordered">
-                                <thead>
-                                  <tr>
-                                    <th class="text-right">#</th>
-                                    <th class="text-right">รหัสประจำตัวประชาชน</th>
-                                    <th class="cen">ชื่อ</th>
-                                    <th class="cen">นามสกุล</th>
-                                    <th class="text-center">ตำแหน่ง</th>
-                                    <th class="text-center">รหัสประจำตัว</th>
-                                    <th class="cen">เบอร์โทร</th>
-                                    <th class="text-center">ชื่อผู้ใช้งาน</th>
-                                    <th class="text-center">ประเภทผู้ใช้งาน</th>
-                                    <th class="text-center">จัดการข้อมูล</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <?php while($row=mysqli_fetch_array($res))
-                                  {
-                                  ?>
-                                  <tr>
-                                    <td class="text-right"><?php echo $row["memid"]; ?></td>
-                                    <td class="text-right"><?php echo $row["citizen"]; ?></td>
-                                    <td class="cen"><?php echo $row["fname"]; ?></td>
-                                    <td class="cen"><?php echo $row["lname"]; ?></td>
-                                    <td class="text-center"><?php echo $row["position"]; ?></td>
-                                    <td class="text-center"><?php echo $row["code"]; ?></td>
-                                    <td class="cen"><?php echo $row["mobile"]; ?></td>
-                                    <td class="text-center"><?php echo $row["user"]; ?></td>
-                                    <td class="text-center"><?php echo $row["tname"]; ?></td>
-                                    <td class="text-center"><button type="button" class="btn btn-warning">Edit</button>
-                                    <button type="button" class="btn btn-danger">Delete</button></td>
-                                  </tr>
-                                      <?php
-                                    }
-                                  ?>
-                                </tbody>
-                              </table>
-                            </div>
-                    </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h2>ข้อมูลข่าวสาร</h2>
                 </div>
-                 <!-- /. row  -->
-                 <hr />
+              </div>
+                 <!-- /. ROW  -->
+            <hr />
+          <form class="form-horizontal" action="insert_member.php" method="post"  id="contact_form" enctype="multipart/form-data">
+            <fieldset>
+              <div class="row">
+        <div class="col-md-1 col-sm-1">
 
-
-               </div>
-             <!-- /. PAGE INNER  -->
-            </div>
-         <!-- /. PAGE WRAPPER  -->
         </div>
+        <div class="col-md-10 col-sm-10">
+            <div class="panel panel-info" id="delay_edit">
+                <div class="panel-heading">
+                    บันทึก แก้ไข ข้อมูลข่าวสาร
+                </div>
+                <div class="panel-body">
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">หัวข้อข่าว :</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input name="side" placeholder="ข้อมูลด้านกิจกรรม" class="form-control" type="password">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">เนื้อหาข่าว :</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <textarea class="form-control" rows="5" name="side" placeholder="รายละเอียดข่าวสาร"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- File input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label">รูปข่าว :</label>
+                    <div class="col-md-4 inputGroupContainer">
+                      <div>
+                        <input type="file">
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Button -->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                      <button type="submit" class="btn btn-warning" >บันทึก <span class="glyphicon glyphicon-send"></span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                    <span style="color:blue;">*กรุณากรอกข้อมูลให้ถูกต้อง ครบถ้วน</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1 col-sm-1">
+            </div>
+          </div>
+            </fieldset>
+          </form>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+        </div>
+    </div>
+                  <!-- /. row  -->
+                </div>             <!-- /. PAGE INNER  -->
+              </div>         <!-- /. PAGE WRAPPER  -->
+            </div>
      <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->

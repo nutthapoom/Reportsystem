@@ -1,3 +1,24 @@
+<?php
+session_start();
+	if(!isset($_SESSION['mem_id'])){
+		echo "Please Login!";
+    header("location:login.php");
+		exit();
+	}
+
+	if($_SESSION['mtype_id'] != "3")
+	{
+		echo "Please Login!";
+		header("location:login.php");
+		exit();
+	}
+
+  include_once('libs/connect.php');
+
+	$query = "SELECT * FROM tbl_member WHERE mem_id = '".$_SESSION['mem_id']."' ";
+	$res = mysqli_query($connection,$query);
+  $row = mysqli_fetch_array($res,MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -71,7 +92,7 @@
             แก้ไขข้อมูลส่วนตัว
           </div>
           <div class="panel-body">
-            <form class="form-horizontal" action="insert_member.php" method="post"  id="contact_form" enctype="multipart/form-data">
+            <form class="form-horizontal" action="update_member.php" method="post"  id="contact_form" enctype="multipart/form-data">
               <fieldset>
                 <!-- Form Name -->
                 <!-- Text input-->
@@ -80,7 +101,7 @@
                   <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input name="user" placeholder="User Name" class="form-control" type="text">
+                      <input name="user" value="<?php echo $row["mem_user"];?>" placeholder="User Name" class="form-control" type="text">
                     </div>
                   </div>
                 </div>
@@ -90,7 +111,7 @@
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input name="pass" placeholder="Password" class="form-control" type="password">
+                        <input name="pass" value="<?php echo $row["mem_pass"];?>" placeholder="Password" class="form-control" type="password">
                       </div>
                     </div>
                 </div>
@@ -100,7 +121,7 @@
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon glyphicon-credit-card"></i></span>
-                        <input name="citicen" placeholder="Citizen ID" class="form-control"  type="text">
+                        <input name="citicen" value="<?php echo $row["mem_citize_id"];?>" placeholder="Citizen ID" class="form-control"  type="text">
                       </div>
                     </div>
                 </div>
@@ -111,69 +132,61 @@
                     <div class="col-md-4 inputGroupContainer">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+                        <input  name="first_name" value="<?php echo $row["mem_fname"];?>" placeholder="First Name" class="form-control"  type="text">
                       </div>
                     </div>
                 </div>
-
                 <!-- Text input-->
+                <div class="form-group">
+                  <label class="col-md-4 control-label" >นามสกุล : </label>
+                  <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                      <input name="last_name" value="<?php echo $row["mem_lname"];?>" placeholder="Last Name" class="form-control"  type="text">
+                    </div>
+                  </div>
+                </div>
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">ตำแหน่ง : </label>
+                <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
+                    <input name="position" value="<?php echo $row["mem_position"];?>" placeholder="Position" class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">รหัสประจำตัว : </label></label>
+                <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                    <input name="position_code" value="<?php echo $row["mem_code"];?>" placeholder="Position Code" class="form-control"  type="text">
+                  </div>
+                </div>
+              </div>
+              <!-- Text input-->
+              <div class="form-group">
+                <label class="col-md-4 control-label">เบอร์โทร : </label>
+                <div class="col-md-4 inputGroupContainer">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                    <input name="mobile" value="<?php echo $row["mem_mobile"];?>" placeholder="Mobile Number" class="form-control" type="text">
+                  </div>
+                </div>
+              </div>
+            <!-- Button -->
+              <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4">
+                  <button type="submit" class="btn btn-primary" >อัพเดตข้อมูล<span class="glyphicon glyphicon-send"></span></button>
+                  <button type="submit" class="btn btn-warning" >ยกเลิก<span class="glyphicon glyphicon-send"></span></button>
+                </div>
+              </div>
 
-<div class="form-group">
-<label class="col-md-4 control-label" >นามสกุล : </label>
-<div class="col-md-4 inputGroupContainer">
-<div class="input-group">
-<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-<input name="last_name" placeholder="Last Name" class="form-control"  type="text">
-</div>
-</div>
-</div>
-
-
-<!-- Text input-->
-<div class="form-group">
-<label class="col-md-4 control-label">ตำแหน่ง : </label>
-<div class="col-md-4 inputGroupContainer">
-<div class="input-group">
-<span class="input-group-addon"><i class="glyphicon glyphicon-heart"></i></span>
-<input name="position" placeholder="Position" class="form-control" type="text">
-</div>
-</div>
-</div>
-
-<!-- Text input-->
-
-<div class="form-group">
-<label class="col-md-4 control-label">รหัสประจำตัว : </label></label>
-<div class="col-md-4 inputGroupContainer">
-<div class="input-group">
-<span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-<input name="position_code" placeholder="Position Code" class="form-control"  type="text">
-</div>
-</div>
-</div>
-<!-- Text input-->
-
-<div class="form-group">
-<label class="col-md-4 control-label">เบอร์โทร : </label>
-<div class="col-md-4 inputGroupContainer">
-<div class="input-group">
-<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-<input name="mobile" placeholder="Mobile Number" class="form-control" type="text">
-</div>
-</div>
-</div>
-
-<!-- Button -->
-<div class="form-group">
-<label class="col-md-4 control-label"></label>
-<div class="col-md-4">
-<button type="submit" class="btn btn-primary" >อัพเดตข้อมูล<span class="glyphicon glyphicon-send"></span></button>
-<button type="submit" class="btn btn-warning" >ยกเลิก<span class="glyphicon glyphicon-send"></span></button>
-</div>
-</div>
-
-</fieldset>
-</form>
+            </fieldset>
+            </form>
 
 
           </div>
@@ -195,3 +208,6 @@
     <script src="assets/js/custom.js"></script>
   </body>
 </html>
+<?
+  mysqli_close($connection);
+?>
